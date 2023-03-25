@@ -30,6 +30,10 @@ app.use('/api/auth', require('./routes/auth'));
 
 app.use('/api/dreamTeam',require('./routes/dreamTeam'));
 
+//directorio publico
+//el use en node es conocido como un middleware, que es una funcion que se ejecuta cuando hacen una peticion
+app.use( express.static('public') 
+);
 //TODO Read: Jugadores
 
 app.use('/api/players',require('./routes/players'))
@@ -46,10 +50,10 @@ app.use('/api/stadiums',require('./routes/stadiums'))
 
 
 
-//directorio publico
-//el use en node es conocido como un middleware, que es una funcion que se ejecuta cuando hacen una peticion
-app.use( express.static('public') 
-);
+
+app.get('*',(req,res) =>{
+    res.sendFile(__dirname + '/public/index.html');
+})
 
 
 
